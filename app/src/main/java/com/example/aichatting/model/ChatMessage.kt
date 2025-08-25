@@ -1,8 +1,6 @@
 package com.example.aichatting.model
 
-
-
 data class ChatMessage(
-    val role: String,   // "user" or "assistant"
+    val role: String,      // "system" | "user" | "assistant"
     val content: String
 )

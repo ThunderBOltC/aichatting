@@ -1,9 +1,12 @@
 package com.example.aichatting.model
 
 data class ChatResponse(
-    val choices: List<Choice>
+    val id: String? = null,
+    val choices: List<Choice> = emptyList()
 )
 
 data class Choice(
-    val message: ChatMessage
+    val index: Int = 0,
+    val message: ChatMessage,
+    val finish_reason: String? = null
 )

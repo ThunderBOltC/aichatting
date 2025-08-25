@@ -1,7 +1,9 @@
+import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 }
+
 
 android {
     namespace = "com.example.aichatting"
@@ -18,11 +20,12 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val apiKey = project.findProperty("OPENROUTER_API_KEY")?.toString() ?: ""
+        val localProps = project.rootProject.file("local.properties")
+        val properties = Properties()
+        properties.load(localProps.inputStream())
 
+        val apiKey: String = properties.getProperty("OPENROUTER_API_KEY") ?: ""
         buildConfigField("String", "OPENROUTER_API_KEY", "\"$apiKey\"")
-
-
     }
 
     buildTypes {

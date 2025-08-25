@@ -1,15 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:gravity="start"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:padding="6dp"
+    android:gravity="start">
 
     <TextView
-        android:id="@+id/textMessageBot"
+        android:id="@+id/textMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/bg_ai_message"
         android:padding="10dp"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/black" />
 </LinearLayout>
