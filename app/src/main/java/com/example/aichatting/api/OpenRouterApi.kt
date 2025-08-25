@@ -6,8 +6,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface OpenAIApi {
-    @POST("v1/chat/completions")
+interface OpenRouterApi {
+    @POST("chat/completions")
     fun getChatCompletion(@Body request: ChatRequest): Call<ChatResponse>
 }
-

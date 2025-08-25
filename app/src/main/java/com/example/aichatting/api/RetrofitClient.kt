@@ -9,19 +9,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private const val BASE_URL = "https://api.openai.com/"
+    private const val BASE_URL = "https://openrouter.ai/api/v1/"
 
     // 🔹 Interceptor to add Authorization header dynamically
     private val authInterceptor = Interceptor { chain ->
-        val apiKey= BuildConfig.OPENAI_API_KEY
+        val apiKey = BuildConfig.OPENROUTER_API_KEY
+
         val request = chain.request().newBuilder()
-            .addHeader("Authorization", "Bearer$apiKey")
+            .addHeader("Authorization", "Bearer $apiKey")
             .addHeader("Content-Type", "application/json")
+            .addHeader("HTTP-Referer", "http://localhost")
+            .addHeader("X-Title", "My AI Android App")
             .build()
         chain.proceed(request)
     }
 
-    // 🔹 Logging interceptor to see request/response in Logcat
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
@@ -31,13 +33,12 @@ object RetrofitClient {
         .addInterceptor(loggingInterceptor)
         .build()
 
-    // 🔹 Retrofit instance
-    val instance: OpenAIApi by lazy {
+    val instance: OpenRouterApi by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(OpenAIApi::class.java)
+            .create(OpenRouterApi::class.java)
     }
 }

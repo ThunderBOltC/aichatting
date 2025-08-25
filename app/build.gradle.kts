@@ -18,10 +18,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val apiKey = project.findProperty("OPENAI_API_KEY")?.toString()
-            ?: throw GradleException("OpenAI API key not found in local.properties")
+        val apiKey = project.findProperty("OPENROUTER_API_KEY")?.toString() ?: ""
 
-        buildConfigField("String", "OPENAI_API_KEY", "\"$apiKey\"")
+        buildConfigField("String", "OPENROUTER_API_KEY", "\"$apiKey\"")
+
 
     }
 
